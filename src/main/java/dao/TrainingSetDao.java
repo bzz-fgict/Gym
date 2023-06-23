@@ -1,4 +1,4 @@
-package dao;
+/*package dao;
 
 import dto.TrainingSet;
 
@@ -18,4 +18,4 @@ public class TrainingSetDAO {
     public void delete(int trainingSetId) {
         // Implementation to delete a TrainingSet by trainingSetId from the database
     }
-}
+}*/

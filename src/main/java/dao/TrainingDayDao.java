@@ -1,4 +1,4 @@
-package dao;
+/*package dao;
 
 import dto.TrainingDay;
 
@@ -19,3 +19,4 @@ public class TrainingDayDAO {
         // Implementation to delete a TrainingDay by trainingId from the database
     }
 }
+*/
