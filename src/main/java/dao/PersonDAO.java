@@ -35,9 +35,33 @@ public class PersonDAO {
 
     public void update(Person person) {
         // Implementation to update a Person object in the database
+        try {
+            String query = "UPDATE Person SET person = :person, age = :age, firstname = :firstname, lastname = :lastname, weight = :weight, height = :height WHERE idperson = :idperson";
+            MapSqlParameterSource params = new MapSqlParameterSource();
+            params.addValue("idperson", person.getIdPerson());
+            params.addValue("age", person.getAge());
+            params.addValue("firstname", person.getFirstname());
+            params.addValue("lastname", person.getLastname());
+            params.addValue("weight", person.getWeight());
+            params.addValue("height", person.getHeight());
+            namedParameterJdbcTemplate.update(query, params);
+            System.out.println("Person with ID " + person.getIdPerson() + " updated successfully.");
+        } catch (Exception e) {
+            System.err.println("Error updating Person with ID " + person.getIdPerson() + ": " + e.getMessage());
+        }
     }
 
-    public void delete(int personId) {
+    public void delete(int idperson) {
         // Implementation to delete a Person by personId from the database
+        try {
+            String query = "DELETE FROM Person WHERE idperson = :idperson";
+            MapSqlParameterSource params = new MapSqlParameterSource();
+            params.addValue("idperson", idperson);
+            namedParameterJdbcTemplate.update(query, params);
+
+            System.out.println("Food item with ID " + idperson + " deleted successfully.");
+        } catch (Exception e) {
+            System.err.println("Error deleting food item with ID " + idperson + ": " + e.getMessage());
+        }
     }
 }
