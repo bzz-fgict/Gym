@@ -18,6 +18,8 @@ public class Person {
             this.weight = weight;
             this.age = age;
         }
+    public Person() {
+    }
 
     public int getIdPerson() {
         return idPerson;
