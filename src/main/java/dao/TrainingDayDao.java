@@ -2,7 +2,7 @@ package dao;
 
 import dto.TrainingDay;
 
-public class TrainingDayDAO {
+public class TrainingDayDao {
     public TrainingDay getById(int trainingId) {
         // Implementation to retrieve TrainingDay by trainingId from the database
     }

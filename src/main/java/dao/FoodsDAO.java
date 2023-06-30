@@ -67,5 +67,22 @@ public class FoodsDAO {
             System.err.println("Error deleting food item with ID " + FoodsId + ": " + e.getMessage());
         }
     }
+    public void insert(Foods foods) {
+        // Implementation to insert a Foods object into the database
+        try {
+            String query = "INSERT INTO Foods (idfood, food, kcal, carbs, protein, fett) VALUES (:idfood, :food, :kcal, :carbs, :protein, :fett)";
+            MapSqlParameterSource params = new MapSqlParameterSource();
+            params.addValue("idfood", foods.getIdfood());
+            params.addValue("food", foods.getFood());
+            params.addValue("kcal", foods.getKcal());
+            params.addValue("carbs", foods.getCarbs());
+            params.addValue("protein", foods.getProtein());
+            params.addValue("fett", foods.getFett());
+            namedParameterJdbcTemplate.update(query, params);
+            System.out.println("Food item with ID " + foods.getIdfood() + " inserted successfully.");
+        } catch (Exception e) {
+            System.err.println("Error inserting food item with ID " + foods.getIdfood() + ": " + e.getMessage());
+        }
+    }
 
 }
