@@ -1,4 +1,4 @@
-/*package dao;
+package dao;
 
 import dto.Person;
 
@@ -19,4 +19,3 @@ public class PersonDAO {
         // Implementation to delete a Person by personId from the database
     }
 }
-*/

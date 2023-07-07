@@ -2,7 +2,7 @@
 
 import dto.TrainingSet;
 
-public class TrainingSetDAO {
+public class TrainingSetDao {
     public TrainingSet getById(int trainingSetId) {
         // Implementation to retrieve TrainingSet by trainingSetId from the database
     }

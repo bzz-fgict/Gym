@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Foods Frontend</title>
+    <link rel="stylesheet" type="text/css" href="../css/FoodFronted.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        function getById() {
+            var idfood = parseInt($("#idfood").val());
+
+            $.ajax({
+                url: "api/foods/" + idfood,
+                type: "GET",
+                success: function (result) {
+                    if (result) {
+                        $("#food").val(result.food);
+                        $("#kcal").val(result.kcal);
+                        $("#carbs").val(result.carbs);
+                        $("#protein").val(result.protein);
+                        $("#fett").val(result.fett);
+                    } else {
+                        alert("No Foods found with the provided ID.");
+                    }
+                },
+                error: function (xhr, status, error) {
+                    alert("Error: " + error);
+                }
+            });
+        }
+
+        function save() {
+            var foods = {
+                idfood: parseInt($("#idfood").val()),
+                food: $("#food").val(),
+                kcal: parseInt($("#kcal").val()),
+                carbs: parseInt($("#carbs").val()),
+                protein: parseInt($("#protein").val()),
+                fett: parseInt($("#fett").val())
+            };
+
+            $.ajax({
+                url: "api/foods",
+                type: "POST",
+                data: JSON.stringify(foods),
+                contentType: "application/json",
+                success: function (result) {
+                    alert("Food item saved successfully.");
+                },
+                error: function (xhr, status, error) {
+                    alert("Error: " + error);
+                }
+            });
+        }
+
+        function update() {
+            var foods = {
+                idfood: parseInt($("#idfood").val()),
+                food: $("#food").val(),
+                kcal: parseInt($("#kcal").val()),
+                carbs: parseInt($("#carbs").val()),
+                protein: parseInt($("#protein").val()),
+                fett: parseInt($("#fett").val())
+            };
+
+            $.ajax({
+                url: "api/foods",
+                type: "PUT",
+                data: JSON.stringify(foods),
+                contentType: "application/json",
+                success: function (result) {
+                    alert("Food item updated successfully.");
+                },
+                error: function (xhr, status, error) {
+                    alert("Error: " + error);
+                }
+            });
+        }
+
+        function deleteById() {
+            var idfood = parseInt($("#idfood").val());
+
+            $.ajax({
+                url: "api/foods/" + idfood,
+                type: "DELETE",
+                success: function (result) {
+                    alert("Food item deleted successfully.");
+                },
+                error: function (xhr, status, error) {
+                    alert("Error: " + error);
+                }
+            });
+        }
+    </script>
+</head>
+<body>
+<div class="main-box">
+    <div>
+        <h2>Food Information</h2>
+        <div>
+            <label for="idfood">ID:</label>
+            <input type="text" id="idfood">
+            <button onclick="getById()">Get</button>
+        </div>
+        <br><br>
+        <div>
+            <label for="food">Food:</label>
+            <input type="text" id="food">
+        </div>
+        <br><br>
+        <div>
+            <label for="kcal">Kcal:</label>
+            <input type="text" id="kcal">
+        </div>
+        <br><br>
+        <div>
+            <label for="carbs">Carbs:</label>
+            <input type="text" id="carbs">
+        </div>
+        <br><br>
+        <div>
+            <label for="protein">Protein:</label>
+            <input type="text" id="protein">
+        </div>
+        <br><br>
+        <div>
+            <label for="fett">Fett:</label>
+            <input type="text" id="fett">
+        </div>
+        <br><br>
+        <div>
+            <button onclick="save()">Save</button>
+            <button onclick="update()">Update</button>
+            <button onclick="deleteById()">Delete</button>
+        </div>
+    </div>
+</div>
+</body>
+</html>
