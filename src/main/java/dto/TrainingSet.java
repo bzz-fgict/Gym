@@ -16,6 +16,10 @@ public class TrainingSet {
         this.repAmount = repAmount;
         this.details = details;
     }
+
+    public TrainingSet(){
+
+    }
 // Getters and setters
 
 
