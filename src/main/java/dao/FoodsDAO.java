@@ -31,18 +31,8 @@ public class FoodsDAO {
         });
     }
 
-    public void save(Foods foods) {
-        String sql = "INSERT INTO foods(idfood, food, kcal, carbs, protein, fett) VALUES (:idfood, :food, :kcal, :carbs, :protein, :fett)";
-
-        MapSqlParameterSource params = new MapSqlParameterSource();
-        params.addValue("idfood", foods.getIdfood());
-        params.addValue("food", foods.getFood());
-        params.addValue("kcal", foods.getKcal());
-        params.addValue("carbs", foods.getCarbs());
-        params.addValue("protein", foods.getProtein());
-        params.addValue("fett", foods.getFett());
-
-        namedParameterJdbcTemplate.update(sql, params);
+    public void save(Foods Foods) {
+        // Implementation to save a Foods object to the database
     }
 
     public void update(Foods foods) {
