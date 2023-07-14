@@ -1,6 +1,8 @@
+package dao;
+
 import dto.FoodIntake;
 
-public class FoodIntakeDAO {
+public class FoodIntakeDao {
     public FoodIntake getById(int foodId, int personId) {
         // Implementation to retrieve FoodIntake by foodId and personId from the database
     }
