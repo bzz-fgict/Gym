@@ -1,10 +1,9 @@
 package Controller;
 
-import dto.Foods;
-import dao.FoodsDAO;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.beans.factory.annotation.Autowired;
+import dao.FoodsDAO;
+import dto.Foods;
 
 @RestController
 @RequestMapping("/food")
@@ -12,31 +11,28 @@ public class FoodsController {
 
     private final FoodsDAO foodsDAO;
 
+    @Autowired
     public FoodsController(FoodsDAO foodsDAO) {
         this.foodsDAO = foodsDAO;
     }
 
     @PostMapping
-    public ResponseEntity<Void> saveFood(@RequestBody Foods foods) {
+    public void createFood(@RequestBody Foods foods) {
         foodsDAO.save(foods);
-        return new ResponseEntity<>(HttpStatus.CREATED);
     }
 
-    @GetMapping("/{id}")
-    public ResponseEntity<Foods> getFood(@PathVariable int id) {
-        Foods food = foodsDAO.getById(id);
-        return new ResponseEntity<>(food, HttpStatus.OK);
+    @GetMapping("/{idfood}")
+    public Foods getFoodById(@PathVariable("idfood") int idfood) {
+        return foodsDAO.getById(idfood);
     }
 
-    @PutMapping
-    public ResponseEntity<Void> updateFood(@RequestBody Foods foods) {
+    @PutMapping("/{idfood}")
+    public void updateFood(@PathVariable("idfood") int idfood, @RequestBody Foods foods) {
         foodsDAO.update(foods);
-        return new ResponseEntity<>(HttpStatus.OK);
     }
 
-    @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deleteFood(@PathVariable int id) {
-        foodsDAO.delete(id);
-        return new ResponseEntity<>(HttpStatus.OK);
+    @DeleteMapping("/{idfood}")
+    public void deleteFood(@PathVariable("idfood") int idfood) {
+        foodsDAO.delete(idfood);
     }
 }
